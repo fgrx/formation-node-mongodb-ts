@@ -1,5 +1,5 @@
-import express, { Router } from "express";
-import { createRouter } from "./router/router";
+import express from "express";
+import { createRouter } from "./router";
 const app = express();
 
 const port = 3000;
