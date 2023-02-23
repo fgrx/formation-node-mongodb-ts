@@ -1,8 +1,12 @@
 import express from "express";
 import { createRouter } from "./router";
+import dotenv from "dotenv";
+
 const app = express();
 
-const port = 3000;
+dotenv.config();
+
+const port = process.env.PORT;
 
 createRouter(app);
 
