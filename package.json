@@ -1,0 +1,19 @@
+{
+  "name": "rando",
+  "version": "1.0.0",
+  "description": "Application de randonnée",
+  "main": "app.js",
+  "scripts": {
+    "prebuild": "rimraf ./dist",
+    "build": "tsc",
+    "dev": "node --watch ./src/app.ts"
+  },
+  "author": "Fabien Grignoux",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^18.14.0",
+    "rimraf": "^4.1.2",
+    "ts-node": "^10.9.1",
+    "tslib": "^2.5.0"
+  }
+}
