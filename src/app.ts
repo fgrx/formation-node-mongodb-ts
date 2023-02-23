@@ -6,6 +6,9 @@ const app = express();
 
 dotenv.config();
 
+app.set("views", "./src/views");
+app.set("view engine", "pug");
+
 const port = process.env.PORT;
 
 createRouter(app);
