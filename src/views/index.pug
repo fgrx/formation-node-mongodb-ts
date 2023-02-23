@@ -1,6 +1,13 @@
-html 
-    head 
+doctype
+html(lang='en')
+    head
+        meta(charset='utf-8')
         title
-            Rando38 
-    body 
-        h1=message
+            Rando38
+        link(href="/bootstrap/css/bootstrap.min.css" rel="stylesheet")
+    body
+        .container
+            p=message
+            button.btn.btn-primary(type="button") test de bouton
+
+    script(src="/bootstrap/js/bootstrap.bundle.min.js")

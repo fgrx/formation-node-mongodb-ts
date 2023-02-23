@@ -9,6 +9,9 @@ dotenv.config();
 app.set("views", "./src/views");
 app.set("view engine", "pug");
 
+app.use("/bootstrap", express.static("./node_modules/bootstrap/dist"));
+app.use("../public", express.static("./public"));
+
 const port = process.env.PORT;
 
 createRouter(app);
