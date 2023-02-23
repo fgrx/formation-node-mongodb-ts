@@ -1,13 +1,6 @@
-doctype
-html(lang='en')
-    head
-        meta(charset='utf-8')
-        title
-            Rando38
-        link(href="/public/css/main.css" rel="stylesheet")
-    body
-        .container
-            p=message
-            button.btn.btn-primary(type="button") test de bouton
+extends layout
 
-    script(src="/bootstrap/js/bootstrap.bundle.min.js")
+block content
+    p=message
+    button.btn.btn-primary(type="button") test de bouton
+
