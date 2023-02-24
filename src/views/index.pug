@@ -1,6 +1,14 @@
 extends layout
 
 block content
-    p=message
-    button.btn.btn-primary(type="button") test de bouton
+    .row.align-items-center.text-center.my-4
+        .col
+            img(src="public/img/banner.svg", alt="Dessin d'une personne en randonnée" width="100%")
+        .col
+            h1 Bienvenue sur Rando38
 
+    h2 Randonnées à voir
+    .row.row-cols-1.row-cols-md-3.g-4
+        each hike in hikes
+            .col
+                include ./partials/hikeItem.pug
