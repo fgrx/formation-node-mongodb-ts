@@ -11,7 +11,7 @@ const hikes = [
     start: "Saint Bernard",
     postCode: 388660,
     difficulty: "average",
-    isTop: false,
+    isTop: true,
     isLoop: true,
   },
   {
