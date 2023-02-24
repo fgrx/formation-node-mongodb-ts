@@ -1,4 +1,4 @@
-import { Request, response, Response } from "express";
+import { Request, Response } from "express";
 
 const legalController = (req: Request, res: Response) => {
   const title = "Mentions légales";
