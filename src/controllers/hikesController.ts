@@ -16,7 +16,7 @@ const hikesController = async (req: Request, res: Response) => {
 
   const prevPage = currentPage >= 1 ? `${url}/${currentPage - 1}` : false;
 
-  const hikes = hikeRepository.getHikes(start, limitPerPages);
+  const hikes = await hikeRepository.getHikes(start, limitPerPages);
 
   res.render("hikes", { title, hikes, nextPage, prevPage });
 };

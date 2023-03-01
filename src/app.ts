@@ -7,6 +7,9 @@ const app = express();
 
 dotenv.config();
 
+// Indique à express d'utiliser un middleware (bodyparser) pour parser la requete
+app.use(express.urlencoded({ extended: true }));
+
 app.set("views", "./src/views");
 app.set("view engine", "pug");
 

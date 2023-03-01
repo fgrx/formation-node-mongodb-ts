@@ -3,6 +3,7 @@ import { hikeDetailsController } from "../controllers/hikeDetailsController";
 import { hikesController } from "../controllers/hikesController";
 import { homeController } from "../controllers/homeController";
 import { legalController } from "../controllers/legalController";
+import { hikesSearchController } from "../controllers/hikesSearchController";
 import { useRouteError } from "../middlewares/routeErrors";
 
 const createRouter = (app: Application) => {
@@ -13,6 +14,7 @@ const createRouter = (app: Application) => {
   router.get("/randonnee/:slug", hikeDetailsController);
   router.get("/randonnees", hikesController);
   router.get("/randonnees/:page", hikesController);
+  router.post("/search", hikesSearchController);
 
   app.use(router);
 
