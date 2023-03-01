@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
 import { hikeRepository } from "../repository/hikeRepository";
 
-const hikesController = (req: Request, res: Response) => {
+const hikesController = async (req: Request, res: Response) => {
   const limitPerPages = 6;
-  const totalHikes = hikeRepository.getNumberOfHikes();
+  const totalHikes = await hikeRepository.getNumberOfHikes();
   const currentPage = parseInt(req.params.page) || 0;
   const start = currentPage * limitPerPages;
 

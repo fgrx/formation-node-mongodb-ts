@@ -1,22 +1,14 @@
-import hikeData from "../data/hikes";
 import { Hike } from "../interfaces/Hike";
+import { hikeModel } from "../db/models/hikeModel";
 
 const hikeRepository = {
-  getHikes: (start: number, limit: number): Hike[] => {
-    const hikes = hikeData as Hike[];
-    const end = start + limit;
+  getHikes: async (start: number, limit: number): Promise<Hike[]> =>
+    await hikeModel.find().skip(start).limit(limit),
 
-    return hikes.slice(start, end);
-  },
+  GetHikeBySlug: async (slug: string): Promise<Hike | null> =>
+    await hikeModel.findOne({ slug }),
 
-  GetHikeBySlug: (slug: string) => {
-    const hikes = hikeData as Hike[];
-    return hikes.find((hike) => hike.slug === slug);
-  },
-
-  getNumberOfHikes: (): number => {
-    return hikeData.length;
-  },
+  getNumberOfHikes: async (): Promise<number> => await hikeModel.find().count(),
 };
 
 export { hikeRepository };
