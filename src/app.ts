@@ -1,6 +1,7 @@
 import express from "express";
 import { createRouter } from "./router";
 import dotenv from "dotenv";
+import connectDB from "./db/dbConnexion";
 
 const app = express();
 
@@ -14,7 +15,9 @@ app.use("/public", express.static("./public"));
 
 createRouter(app);
 
-const port = process.env.PORT;
+const port = process.env.PORT || "4000";
+
+connectDB();
 
 app.listen(port, () => {
   console.log(`Serveur lancé et à l'écoute sur le port ${port}`);
