@@ -43,6 +43,9 @@ const addController = {
     const newHike: Hike = { ...formData };
     newHike.slug = slugify(newHike.title);
     newHike.date = new Date();
+    newHike.image = req.file
+      ? `/public/uploads/${req.file.filename}`
+      : undefined;
 
     const createdHike = await hikeRepository.addHike(newHike);
 
