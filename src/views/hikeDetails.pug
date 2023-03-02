@@ -16,6 +16,8 @@ block content
                         li Durée : #{hike.duration} minutes
                         li départ de : #{hike.start} (#{hike.postCode})
                         li Est-ce un boucle ? #{hike.loop?"oui":"non"}
+                        if hike.date
+                            li Ajoutée le #{hike.date.toLocaleDateString()}
 
                     if hike.isTop
                         img(src="/public/img/star.svg", alt="Etoile")

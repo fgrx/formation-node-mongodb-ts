@@ -41,6 +41,7 @@ const addController = {
 
     const newHike: Hike = { ...formData };
     newHike.slug = slugify(newHike.title);
+    newHike.date = new Date();
 
     const createdHike = await hikeRepository.addHike(newHike);
 
