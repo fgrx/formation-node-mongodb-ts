@@ -12,7 +12,7 @@ const hikesController = async (req: Request, res: Response) => {
   const url = "/randonnees/page";
 
   const nextPage =
-    start + limitPerPages <= totalHikes ? `${url}/${currentPage + 1}` : false;
+    start + limitPerPages < totalHikes ? `${url}/${currentPage + 1}` : false;
 
   const prevPage = currentPage >= 1 ? `${url}/${currentPage - 1}` : false;
 
