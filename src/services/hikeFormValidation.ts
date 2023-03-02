@@ -2,7 +2,7 @@ import Joi from "joi";
 
 const hikeFormValidationSchema = Joi.object({
   title: Joi.string().min(5).required().messages({
-    "string.min": "Le titre doit faire plus de 5 chr",
+    "string.min": "Le titre doit faire plus de 5 caractères",
     "string.empty": "Le titre est obligatoire",
   }),
   description: Joi.string().min(20).messages({
@@ -25,28 +25,25 @@ const hikeFormValidationSchema = Joi.object({
     "number.integer":
       "La durée en minutes de la randonnée est requise (sans virgules)",
   }),
-  distance: Joi.number()
-    .integer()
-    .min(2)
-    .messages({
-      "number.base": "La distance en km est requise",
-      "number.min": "La distance doit être supérieure à 2km",
-      "number.integer": "La distance doit avoir un compte rond, sans virgule",
-    }),
+  distance: Joi.number().integer().min(2).messages({
+    "number.base": "La distance en km est requise",
+    "number.min": "La distance doit être supérieure à 2km",
+    "number.integer": "La distance doit avoir un compte rond, sans virgule",
+  }),
   difficulty: Joi.required().valid("easy", "medium", "hard"),
-});
+}).options({ abortEarly: false });
 
 const hikeFormValidation = (
   form: any
-): { isFormValid: boolean; formErrorsMessage: string } => {
+): { isFormValid: boolean; formErrors: string[] } => {
   const { error } = hikeFormValidationSchema.validate(form);
 
   if (error) {
-    const errorsList = error?.details.map((element) => element.message);
-    return { isFormValid: false, formErrorsMessage: errorsList.toString() };
+    const errors = error?.details.map((element) => element.message);
+    return { isFormValid: false, formErrors: errors };
   }
 
-  return { isFormValid: true, formErrorsMessage: "" };
+  return { isFormValid: true, formErrors: [] };
 };
 
 export { hikeFormValidation };

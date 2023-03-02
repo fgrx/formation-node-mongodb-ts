@@ -25,12 +25,13 @@ const addController = {
     const formData = { ...req.body };
     formData.isLoop = formData.isLoop === "on";
 
-    const { isFormValid, formErrorsMessage } = hikeFormValidation(formData);
+    const { isFormValid, formErrors } = hikeFormValidation(formData);
 
     if (!isFormValid) {
       const message: AlertMessage = {
         title: "Erreur de formulaire",
-        description: `Les champs suivants présentent un problème : ${formErrorsMessage}`,
+        description: "Les champs suivants présentent un problème :",
+        errors: formErrors,
         type: "error",
       };
 
@@ -51,6 +52,7 @@ const addController = {
         description:
           "Une erreur s'est produite pendant l'enregistrement. Veuillez contacter l'administrateur.",
         type: "error",
+        errors: [],
       };
       res.render("hikeAddForm", { message, formData });
     }
@@ -59,6 +61,7 @@ const addController = {
       title: "Randonnée enregistrée !",
       description: "Votre randonnée a été ajoutée avec succès",
       type: "success",
+      errors: [],
     };
 
     res.render("hikeAddForm", { message });
