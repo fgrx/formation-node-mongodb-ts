@@ -3,6 +3,16 @@ extends layout
 block content
     h1 Ajout d'une nouvelle randonnée 
 
+    if message.type==='error'
+        .alert.alert-danger 
+            h3.alert-heading=message.title
+            p=message.description
+
+    if message.type==='success'
+        .alert.alert-success 
+            h3.alert-heading=message.title
+            p=message.description
+
     form(action="/randonnees/ajout", method="POST") 
         .mb-3 
             label.form-label(for="title") Titre
@@ -27,10 +37,10 @@ block content
         .mb-3 
             label.form-label(for="difficulty") Difficulté
             select#difficulty.form-select(name="difficulty")
-                    option(value="easy") Facile 
-                    option(value="medium") Moyenne 
-                    option(value="hard") Difficile
-        
+                option(value="easy") Facile 
+                option(value="medium") Moyenne 
+                option(value="hard") Difficile
+
         .form-check.form-switch.mb-3 
             label.form-check-label(for="isLoop" role="switch") Cette rando fait une boucle ? 
             input#isLoop.form-check-input(name="isLoop" type="checkbox" role="switch" checked)
