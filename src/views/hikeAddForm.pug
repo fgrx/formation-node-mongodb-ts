@@ -3,52 +3,53 @@ extends layout
 block content
     h1 Ajout d'une nouvelle randonnée 
 
-    if message.type==='error'
+    if message && message.type==='error'
         .alert.alert-danger 
             h3.alert-heading=message.title
             p=message.description
 
-    if message.type==='success'
+    if message && message.type==='success'
         .alert.alert-success 
             h3.alert-heading=message.title
             p=message.description
 
-    form(action="/randonnees/ajout", method="POST") 
-        .mb-3 
-            label.form-label(for="title") Titre
-            input#title.form-control(name="title" value="test titre")
+    if !message || message.type!=="success"
+        form(action="/randonnees/ajout", method="POST") 
+            .mb-3 
+                label.form-label(for="title") Titre
+                input#title.form-control(name="title" value=formData.title)
 
-        .mb-3 
-            label.form-label(for="duration") Durée
-            input#duration.form-control(name="duration" value="120")
+            .mb-3 
+                label.form-label(for="duration") Durée en minutes
+                input#duration.form-control(name="duration" value=formData.duration)
 
-        .mb-3 
-            label.form-label(for="distance") Distance
-            input#distance.form-control(name="distance" value="10")
+            .mb-3 
+                label.form-label(for="distance") Distance en killomètres
+                input#distance.form-control(name="distance" value=formData.distance)
 
-        .mb-3 
-            label.form-label(for="start") Ville de départ
-            input#start.form-control(name="start" value="Ordonnaz")
+            .mb-3 
+                label.form-label(for="start") Ville de départ
+                input#start.form-control(name="start" value=formData.start)
 
-        .mb-3 
-            label.form-label(for="postCode") Code postal
-            input#postCode.form-control(name="postCode" value="38450")
+            .mb-3 
+                label.form-label(for="postCode") Code postal
+                input#postCode.form-control(name="postCode" value=formData.postCode)
 
-        .mb-3 
-            label.form-label(for="difficulty") Difficulté
-            select#difficulty.form-select(name="difficulty")
-                option(value="easy") Facile 
-                option(value="medium") Moyenne 
-                option(value="hard") Difficile
+            .mb-3 
+                label.form-label(for="difficulty") Difficulté
+                select#difficulty.form-select(name="difficulty" )
+                    option(value="easy" selected=formData.difficulty==="easy") Facile 
+                    option(value="medium" selected=formData.difficulty==="medium") Moyenne 
+                    option(value="hard" selected=formData.difficulty==="hard") Difficile
 
-        .form-check.form-switch.mb-3 
-            label.form-check-label(for="isLoop" role="switch") Cette rando fait une boucle ? 
-            input#isLoop.form-check-input(name="isLoop" type="checkbox" role="switch" checked)
+            .form-check.form-switch.mb-3 
+                label.form-check-label(for="isLoop" role="switch") Cette rando fait une boucle ? 
+                input#isLoop.form-check-input(name="isLoop" type="checkbox" role="switch" checked=formData.isLoop)
 
 
-        .mb-3 
-            label.form-label(for="description") Description et itinéraire
-            textarea#description.form-control(name="description",  rows="10" ) Description de la rando
+            .mb-3 
+                label.form-label(for="description") Description et itinéraire
+                textarea#description.form-control(name="description",  rows="10" )=formData.description
 
-        .mb-3.text-center 
-            input.btn.btn-primary(type="submit" value="Ajouter")
+            .mb-3.text-center 
+                input.btn.btn-primary(type="submit" value="Ajouter")                                        
