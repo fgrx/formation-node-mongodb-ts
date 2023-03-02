@@ -6,6 +6,7 @@
   "scripts": {
     "prebuild": "rimraf ./dist",
     "build": "tsc",
+    "sass": "sass ./src/scss:./public/css",
     "dev": "nodemon ./src/app.ts"
   },
   "author": "Fabien Grignoux",
@@ -26,6 +27,7 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "mongoose": "^7.0.0",
-    "pug": "^3.0.2"
+    "pug": "^3.0.2",
+    "slugify": "^1.6.5"
   }
 }

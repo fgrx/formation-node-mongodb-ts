@@ -9,7 +9,7 @@ const hikesController = async (req: Request, res: Response) => {
 
   const title = "Liste des randonnées";
 
-  const url = "/randonnees";
+  const url = "/randonnees/page";
 
   const nextPage =
     start + limitPerPages <= totalHikes ? `${url}/${currentPage + 1}` : false;

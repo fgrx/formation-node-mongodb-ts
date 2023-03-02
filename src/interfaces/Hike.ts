@@ -8,7 +8,7 @@ interface Hike {
   start: string;
   postCode: number;
   difficulty: HikeDifficulty;
-  isTop: boolean;
+  isTop?: boolean;
   isLoop: boolean;
 }
 

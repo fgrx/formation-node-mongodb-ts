@@ -18,6 +18,15 @@ const hikeRepository = {
     await hikeModel.findOne({ slug }),
 
   getNumberOfHikes: async (): Promise<number> => await hikeModel.find().count(),
+
+  addHike: async (hike: Hike): Promise<Hike | false> => {
+    try {
+      return await hikeModel.create(hike);
+    } catch (error) {
+      console.log("error", error);
+      return false;
+    }
+  },
 };
 
 export { hikeRepository };
