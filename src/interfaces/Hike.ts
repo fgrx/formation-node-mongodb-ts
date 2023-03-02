@@ -9,6 +9,8 @@ interface Hike {
   postCode: number;
   difficulty: HikeDifficulty;
   isTop?: boolean;
+  isValid?: boolean;
+  date?: Date;
   isLoop: boolean;
 }
 
