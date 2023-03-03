@@ -13,6 +13,7 @@ const hikes = [
     difficulty: "average",
     isTop: true,
     isLoop: true,
+    isValid: true,
   },
   {
     slug: "autour-malatrait",
@@ -28,6 +29,7 @@ const hikes = [
     difficulty: "average",
     isTop: false,
     isLoop: false,
+    isValid: true,
   },
   {
     slug: "autjour-poleyrieu",
@@ -41,6 +43,7 @@ const hikes = [
     difficulty: "easy",
     isTop: true,
     isLoop: true,
+    isValid: false,
   },
   {
     slug: "boucle-vezeronce",
@@ -56,6 +59,7 @@ const hikes = [
     difficulty: "average",
     isTop: false,
     isLoop: true,
+    isValid: true,
   },
   {
     slug: "panorama-saint-sorlin",
@@ -71,6 +75,7 @@ const hikes = [
     difficulty: "easy",
     isTop: true,
     isLoop: false,
+    isValid: true,
   },
   {
     slug: "autour-moras",
@@ -86,6 +91,7 @@ const hikes = [
     difficulty: "hard",
     isTop: false,
     isLoop: true,
+    isValid: true,
   },
   {
     slug: "villages-lac-paladru",
@@ -101,6 +107,7 @@ const hikes = [
     difficulty: "hard",
     isTop: false,
     isLoop: true,
+    isValid: true,
   },
   {
     slug: "boucle-grange-dimiere",
@@ -116,6 +123,7 @@ const hikes = [
     difficulty: "easy",
     isTop: false,
     isLoop: true,
+    isValid: true,
   },
 ];
 

@@ -7,6 +7,7 @@ import { hikesSearchController } from "../controllers/hikesSearchController";
 import { useRouteError } from "../middlewares/routeErrors";
 import { addController } from "../controllers/hikeAddController";
 import upload from "../middlewares/upload";
+import { adminRoutes } from "./admin";
 
 const createRouter = (app: Application) => {
   const router = Router();
@@ -26,6 +27,7 @@ const createRouter = (app: Application) => {
   router.get("/randonnee/:slug", hikeDetailsController);
 
   app.use(router);
+  app.use(adminRoutes(router));
 
   useRouteError(app);
 };
