@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import { hikeRepository } from "../repository/hikeRepository";
+import { hikeRepository } from "../../repository/hikeRepository";
 
-const hikesController = async (req: Request, res: Response) => {
+const hikesDisplayController = async (req: Request, res: Response) => {
   const limitPerPages = 6;
   const totalHikes = await hikeRepository.getNumberOfHikes();
   const currentPage = parseInt(req.params.page) || 0;
@@ -21,4 +21,4 @@ const hikesController = async (req: Request, res: Response) => {
   res.render("hikes", { title, hikes, nextPage, prevPage });
 };
 
-export { hikesController };
+export { hikesDisplayController };

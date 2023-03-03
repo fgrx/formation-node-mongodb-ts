@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
-import { Hike } from "../interfaces/Hike";
-import { AlertMessage } from "../interfaces/AlertMessage";
+import { Hike } from "../../interfaces/Hike";
+import { AlertMessage } from "../../interfaces/AlertMessage";
 import slugify from "slugify";
-import { hikeRepository } from "../repository/hikeRepository";
-import { hikeFormValidation } from "../services/hikeFormValidation";
+import { hikeRepository } from "../../repository/hikeRepository";
+import { hikeFormValidation } from "../../services/hikeFormValidation";
 
-const addController = {
+const hikeAddController = {
   displayForm: (req: Request, res: Response) => {
     const defaultFormValues = {
       title: "",
@@ -71,4 +71,4 @@ const addController = {
   },
 };
 
-export { addController };
+export { hikeAddController };

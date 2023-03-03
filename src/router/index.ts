@@ -1,13 +1,16 @@
 import { Application, Router } from "express";
-import { hikeDetailsController } from "../controllers/hikeDetailsController";
-import { hikesController } from "../controllers/hikesController";
 import { homeController } from "../controllers/homeController";
 import { legalController } from "../controllers/legalController";
-import { hikesSearchController } from "../controllers/hikesSearchController";
 import { useRouteError } from "../middlewares/routeErrors";
-import { addController } from "../controllers/hikeAddController";
 import upload from "../middlewares/upload";
 import { adminRoutes } from "./admin";
+import { authController } from "../controllers/authController";
+import {
+  hikeDetailsController,
+  hikesSearchController,
+  hikesDisplayController,
+  hikeAddController,
+} from "../controllers/hike";
 
 const createRouter = (app: Application) => {
   const router = Router();
@@ -16,15 +19,16 @@ const createRouter = (app: Application) => {
   router.post("/search", hikesSearchController);
   router.get("/mentions-legales", legalController);
 
-  router.get("/randonnees", hikesController);
-  router.get("/randonnees/ajout", addController.displayForm);
+  router.get("/randonnees", hikesDisplayController);
+  router.get("/randonnees/ajout", hikeAddController.displayForm);
   router.post(
     "/randonnees/ajout",
     upload.single("image"),
-    addController.validateForm
+    hikeAddController.validateForm
   );
-  router.get("/randonnees/page/:page", hikesController);
+  router.get("/randonnees/page/:page", hikesDisplayController);
   router.get("/randonnee/:slug", hikeDetailsController);
+  router.get("/login", authController.showLogin);
 
   app.use(router);
   app.use(adminRoutes(router));

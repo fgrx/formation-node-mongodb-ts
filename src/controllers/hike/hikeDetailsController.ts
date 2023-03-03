@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { hikeRepository } from "../repository/hikeRepository";
+import { hikeRepository } from "../../repository/hikeRepository";
 
 const hikeDetailsController = async (req: Request, res: Response) => {
   const slug = req.params.slug;
