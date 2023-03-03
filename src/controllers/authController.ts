@@ -8,6 +8,12 @@ const authController = {
     res.render("login");
   },
 
+  logout(req: Request, res: Response) {
+    req.session.destroy(() => {
+      res.redirect("/login");
+    });
+  },
+
   async controlCredentials(req: Request, res: Response) {
     const { email, password } = req.body;
 

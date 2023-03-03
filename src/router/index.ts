@@ -13,6 +13,7 @@ const createRouter = (app: Application) => {
   router.get("/mentions-legales", legalController);
   router.get("/login", authController.showLogin);
   router.post("/login", authController.controlCredentials);
+  router.get("/logout", authController.logout);
 
   app.use(router);
 

@@ -1,4 +1,6 @@
 import { Router } from "express";
+import {routeGuard} from "../middlewares/routeGuard"
+
 import {
   displayHikeManagementConsole,
   hikeDeletion,
@@ -6,9 +8,9 @@ import {
 } from "../controllers/admin";
 
 const adminRoutes = (router: Router): Router => {
-  router.get("/admin", displayHikeManagementConsole);
-  router.get("/admin/delete/:slug", hikeDeletion);
-  router.get("/admin/valid/:slug", hikeValidation);
+  router.get("/admin",routeGuard, displayHikeManagementConsole);
+  router.get("/admin/delete/:slug", routeGuard, hikeDeletion);
+  router.get("/admin/valid/:slug",routeGuard, hikeValidation);
 
   return router;
 };
