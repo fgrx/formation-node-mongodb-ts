@@ -1,0 +1,13 @@
+if alertMessage.type==='error'
+    .alert.alert-danger 
+        h3.alert-heading=alertMessage.title
+        p=alertMessage.description
+        if alertMessage.errors
+            ul 
+                each error in alertMessage.errors 
+                    li=error
+
+if alertMessage.type==='success'
+    .alert.alert-success 
+        h3.alert-heading=alertMessage.title
+        p=alertMessage.description

@@ -28,14 +28,14 @@ const hikeAddController = {
     const { isFormValid, formErrors } = hikeFormValidation(formData);
 
     if (!isFormValid) {
-      const message: AlertMessage = {
+      const alertMessage: AlertMessage = {
         title: "Erreur de formulaire",
         description: "Les champs suivants présentent un problème :",
         errors: formErrors,
         type: "error",
       };
 
-      res.render("hikeAddForm", { message, formData });
+      res.render("hikeAddForm", { alertMessage, formData });
 
       return;
     }
