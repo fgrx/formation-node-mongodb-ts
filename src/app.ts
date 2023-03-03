@@ -2,6 +2,8 @@ import express from "express";
 import { createRouter } from "./router";
 import dotenv from "dotenv";
 import connectDB from "./db/dbConnexion";
+import cookieParser from "cookie-parser";
+import sessions from "express-session";
 
 const app = express();
 
@@ -21,6 +23,27 @@ createRouter(app);
 const port = process.env.PORT || "4000";
 
 connectDB();
+
+//Pour les sessions
+const oneDay = 1000 * 60 * 60 * 24;
+
+app.use(
+  sessions({
+    secret: process.env.SESSION_SECRET || "MaVarSecrete!",
+    saveUninitialized: true,
+    resave: true,
+    cookie: { maxAge: oneDay },
+  })
+);
+
+// Pour ne plus avoir de problème avec le type sur les sessions avec TS
+declare module "express-session" {
+  interface SessionData {
+    userEmail: string;
+  }
+}
+
+app.use(cookieParser());
 
 app.listen(port, () => {
   console.log(`Serveur lancé et à l'écoute sur le port ${port}`);
