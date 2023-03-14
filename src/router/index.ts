@@ -5,6 +5,7 @@ import { useRouteError } from "../middlewares/routeErrors";
 import { adminRoutes } from "./admin";
 import { authController } from "../controllers/authController";
 import { hikeRoutes } from "./hike";
+import { apiV1 } from "./api/v1";
 
 const createRouter = (app: Application) => {
   const router = Router();
@@ -19,6 +20,7 @@ const createRouter = (app: Application) => {
 
   app.use(adminRoutes(router));
   app.use(hikeRoutes(router));
+  app.use(apiV1(router));
 
   useRouteError(app);
 };

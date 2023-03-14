@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "@types/cookie-parser": "^1.4.3",
+    "@types/cors": "^2.8.13",
     "@types/express-session": "^1.17.6",
     "@types/joi": "^17.2.3",
     "@types/mongoose": "^5.11.97",
@@ -29,6 +30,7 @@
     "@types/pug": "^2.0.6",
     "bootstrap": "^5.2.3",
     "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-session": "^1.17.3",

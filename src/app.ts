@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import connectDB from "./db/dbConnexion";
 import cookieParser from "cookie-parser";
 import sessions from "express-session";
+import cors from "cors";
 
 const app = express();
 
@@ -39,6 +40,8 @@ app.set("view engine", "pug");
 
 app.use("/bootstrap", express.static("./node_modules/bootstrap/dist"));
 app.use("/public", express.static("./public"));
+
+app.use(cors());
 
 createRouter(app);
 
