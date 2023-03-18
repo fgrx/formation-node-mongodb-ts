@@ -12,6 +12,7 @@ dotenv.config();
 
 // Indique à express d'utiliser un middleware (bodyparser) pour parser la requete
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 //Pour les sessions
 const oneDay = 1000 * 60 * 60 * 24;

@@ -1,7 +1,9 @@
 import { Router } from "express";
 import { hikeRepository } from "../../../../repository/hikeRepository";
 
-const getHikes = (router: Router, baseUrl: string) => {
+const getHikes = (baseUrl: string): Router => {
+  const router = Router();
+
   router.get(`${baseUrl}/hikes`, async (req, res) => {
     const start = parseInt(req.query.start as string) || 0;
     const limit = parseInt(req.query.limit as string) || 20;
@@ -10,6 +12,8 @@ const getHikes = (router: Router, baseUrl: string) => {
 
     res.json(hikes);
   });
+
+  return router;
 };
 
 export default getHikes;

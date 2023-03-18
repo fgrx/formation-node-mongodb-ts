@@ -18,9 +18,9 @@ const createRouter = (app: Application) => {
 
   app.use(router);
 
-  app.use(adminRoutes(router));
-  app.use(hikeRoutes(router));
-  app.use(apiV1(router));
+  app.use(adminRoutes());
+  app.use(hikeRoutes());
+  app.use(apiV1());
 
   useRouteError(app);
 };

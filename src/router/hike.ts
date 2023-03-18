@@ -7,7 +7,9 @@ import {
 } from "../controllers/hike";
 import upload from "../middlewares/upload";
 
-const hikeRoutes = (router: Router) => {
+const hikeRoutes = () => {
+  const router = Router();
+
   router.get("/randonnees", hikesDisplayController);
   router.get("/randonnees/ajout", hikeAddController.displayForm);
   router.post(

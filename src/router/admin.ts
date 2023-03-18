@@ -1,5 +1,5 @@
 import { Router } from "express";
-import {routeGuard} from "../middlewares/routeGuard"
+import { routeGuard } from "../middlewares/routeGuard";
 
 import {
   displayHikeManagementConsole,
@@ -7,10 +7,12 @@ import {
   hikeValidation,
 } from "../controllers/admin";
 
-const adminRoutes = (router: Router): Router => {
-  router.get("/admin",routeGuard, displayHikeManagementConsole);
+const adminRoutes = (): Router => {
+  const router = Router();
+
+  router.get("/admin", routeGuard, displayHikeManagementConsole);
   router.get("/admin/delete/:slug", routeGuard, hikeDeletion);
-  router.get("/admin/valid/:slug",routeGuard, hikeValidation);
+  router.get("/admin/valid/:slug", routeGuard, hikeValidation);
 
   return router;
 };
