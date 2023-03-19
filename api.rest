@@ -6,8 +6,8 @@ post http://localhost:3000/api/v1/hikes
 Content-Type: application/json
 
 {
-    "title":"Randonnée de test",
-    "difficulty":"easy",
+    "difficulty":"medium",
+    "title":"Randonnée de test 2",
     "postCode":"38400",
     "start":"Hyère sur Amby",
     "duration":180,

@@ -1,18 +1,19 @@
 import { Router } from "express";
 import slugify from "slugify";
 import { Hike } from "../../../../interfaces/Hike";
+import { validationMiddleware } from "../../../../middlewares/validationMiddleware";
 import { hikeRepository } from "../../../../repository/hikeRepository";
-import { hikeFormValidation } from "../../../../services/hikeFormValidation";
+import { hikeValidationSchema } from "../../../../schemas/hikeSchema";
 
 const addHike = (baseUrl: string) => {
   const router = Router();
 
-  router.post(`${baseUrl}/hikes`, async (req, res) => {
-    const hikeData = req.body;
+  router.post(
+    `${baseUrl}/hikes`,
+    validationMiddleware(hikeValidationSchema),
+    async (req, res) => {
+      const hikeData = req.body;
 
-    const { isFormValid, formErrors } = hikeFormValidation(hikeData);
-
-    if (isFormValid) {
       const newHike: Hike = { ...hikeData };
       newHike.slug = slugify(newHike.title);
       newHike.date = new Date();
@@ -28,12 +29,8 @@ const addHike = (baseUrl: string) => {
       } else {
         res.status(500).json("Erreur d'ajout de la ressource");
       }
-    } else {
-      res
-        .status(400)
-        .json({ message: "Randonnée mal formatée", details: formErrors });
     }
-  });
+  );
 
   return router;
 };

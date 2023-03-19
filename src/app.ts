@@ -11,7 +11,9 @@ const app = express();
 dotenv.config();
 
 // Indique à express d'utiliser un middleware (bodyparser) pour parser la requete
+// Pour les formulaires :
 app.use(express.urlencoded({ extended: true }));
+// Pour les requêtes POST
 app.use(express.json());
 
 //Pour les sessions
