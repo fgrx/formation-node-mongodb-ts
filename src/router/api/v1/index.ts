@@ -1,6 +1,6 @@
 import { Router } from "express";
-import addHike from "./hike/addHike";
-import getHikes from "./hike/getHikes";
+import { globSync } from "glob";
+import path from "path";
 
 const apiV1 = (): Router => {
   const router = Router();
@@ -11,8 +11,15 @@ const apiV1 = (): Router => {
     res.json("Bienvenue ! 🙌");
   });
 
-  router.use(getHikes(baseUrl));
-  router.use(addHike(baseUrl));
+  //Auto import
+  const routerFiles = globSync(`./src/router/api/**/*.ts`, {
+    ignore: "src/router/api/v1/index.ts",
+  });
+
+  routerFiles.map(async (filename) => {
+    const routeModule = await import(path.resolve(filename));
+    router.use(routeModule.default(baseUrl));
+  });
 
   return router;
 };
