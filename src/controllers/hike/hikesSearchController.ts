@@ -1,12 +1,20 @@
 import { Request, Response } from "express";
+import { HikeDifficulty } from "../../interfaces/Hike";
 import { hikeRepository } from "../../repository/hikeRepository";
 
-const hikesSearchController = async (req: Request, res: Response) => {
+interface searchParams {
+  distanceMin?: number;
+  distanceMax?: number;
+  difficulty?: string | HikeDifficulty;
+  isLoop?: string | boolean;
+}
+
+const searchQueryBuilder = (params: searchParams): object => {
+  const { distanceMin, distanceMax, difficulty, isLoop } = params;
+
   let query = {};
 
-  const { distanceMin, distanceMax, difficulty, isLoop } = req.body;
-
-  if (isLoop == "on") Object.assign(query, { isLoop: true });
+  if (isLoop == "on" || isLoop) Object.assign(query, { isLoop: true });
   if (difficulty) Object.assign(query, { difficulty });
 
   if (distanceMin || distanceMax) {
@@ -18,9 +26,17 @@ const hikesSearchController = async (req: Request, res: Response) => {
     Object.assign(query, { distance });
   }
 
+  return query;
+};
+
+const hikesSearchController = async (req: Request, res: Response) => {
+  const params = req.body;
+
+  const query = searchQueryBuilder(params);
+
   const hikes = await hikeRepository.searchHikes(query);
 
   res.render("search", { hikes });
 };
 
-export { hikesSearchController };
+export { hikesSearchController, searchQueryBuilder };

@@ -2,6 +2,9 @@ get http://localhost:3000/api/v1
 ###
 get http://localhost:3000/api/v1/hikes?start=0&limit=2
 ###
+
+get http://localhost:3000/api/v1/search?isLoop=true&difficulty=easy&distanceMin=5&distanceMax=15
+###
 post http://localhost:3000/api/v1/hikes
 Content-Type: application/json
 
