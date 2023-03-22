@@ -7,18 +7,22 @@
     "prebuild": "rimraf ./dist",
     "build": "tsc",
     "sass": "sass ./src/scss:./public/css",
-    "dev": "nodemon ./src/app.ts"
+    "dev": "NODE_ENV=dev nodemon ./src/app.ts",
+    "test": "NODE_ENV=test vitest watch"
   },
   "author": "Fabien Grignoux",
   "license": "ISC",
   "devDependencies": {
     "@types/express": "^4.17.17",
     "@types/node": "^18.14.0",
+    "@types/supertest": "^2.0.12",
     "nodemon": "^2.0.20",
     "rimraf": "^4.1.2",
     "sass": "^1.58.3",
+    "supertest": "^6.3.3",
     "ts-node": "^10.9.1",
-    "tslib": "^2.5.0"
+    "tslib": "^2.5.0",
+    "vitest": "^0.29.7"
   },
   "dependencies": {
     "@types/cookie-parser": "^1.4.3",

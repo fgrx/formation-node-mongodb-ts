@@ -20,6 +20,7 @@ const createRouter = (app: Application) => {
 
   app.use(adminRoutes());
   app.use(hikeRoutes());
+
   app.use(apiV1());
 
   useRouteError(app);

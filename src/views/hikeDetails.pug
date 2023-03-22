@@ -15,7 +15,7 @@ block content
                         li Distance : #{hike.distance} km
                         li Durée : #{hike.duration} minutes
                         li départ de : #{hike.start} (#{hike.postCode})
-                        li Est-ce un boucle ? #{hike.loop?"oui":"non"}
+                        li Est-ce un boucle ? #{hike.isLoop?"Oui":"Non"}
                         if hike.date
                             li Ajoutée le #{hike.date.toLocaleDateString()}
 

@@ -1,5 +1,6 @@
 interface Hike {
-  slug: string;
+  _id?: object;
+  slug?: string;
   title: string;
   duration: number;
   image?: string;
@@ -14,6 +15,6 @@ interface Hike {
   isLoop: boolean;
 }
 
-type HikeDifficulty = "easy" | "average" | "hard";
+type HikeDifficulty = "easy" | "medium" | "hard";
 
 export { Hike, HikeDifficulty };

@@ -1,17 +1,29 @@
 get http://localhost:3000/api/v1
 ###
+
+get http://localhost:3000/api/v1/hikes/hauteurs-val-amby
+###
+
+
+get http://localhost:3000/api/v1/hikes/rando-qui-n-existe-pas
+###
+
+get http://localhost:3000/api/v1/test
+###
+
 get http://localhost:3000/api/v1/hikes?start=0&limit=2
 ###
 
-get http://localhost:3000/api/v1/search?isLoop=true&difficulty=easy&distanceMin=5&distanceMax=15
+get http://localhost:3000/api/v1/search?isLoop=true&difficulty=easy
+
 ###
 post http://localhost:3000/api/v1/hikes
 Content-Type: application/json
 
 {
     "difficulty":"medium",
-    "title":"Randonnée de test 2",
-    "postCode":"38400",
+    "title":"Randonnée de test 23",
+    "postCode":38400,
     "start":"Hyère sur Amby",
     "duration":180,
     "distance":12,

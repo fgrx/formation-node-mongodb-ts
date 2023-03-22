@@ -8,7 +8,7 @@ import cors from "cors";
 
 const app = express();
 
-dotenv.config();
+dotenv.config({ path: `.env.${process.env.NODE_ENV}` });
 
 // Indique à express d'utiliser un middleware (bodyparser) pour parser la requete
 // Pour les formulaires :
@@ -46,12 +46,16 @@ app.use("/public", express.static("./public"));
 
 app.use(cors());
 
-createRouter(app);
-
 const port = process.env.PORT || "4000";
 
 connectDB();
 
-app.listen(port, () => {
-  console.log(`Serveur lancé et à l'écoute sur le port ${port}`);
-});
+createRouter(app);
+
+if (process.env.NODE_ENV !== "test") {
+  app.listen(port, () => {
+    console.log(`Serveur lancé et à l'écoute sur le port ${port}`);
+  });
+}
+
+export default app;
