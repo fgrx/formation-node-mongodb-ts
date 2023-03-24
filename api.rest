@@ -22,7 +22,7 @@ Content-Type: application/json
 
 {
     "difficulty":"medium",
-    "title":"Randonnée de test 23",
+    "title":"Randonnée de test 2345",
     "postCode":38400,
     "start":"Hyère sur Amby",
     "duration":180,

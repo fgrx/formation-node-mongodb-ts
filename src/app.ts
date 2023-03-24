@@ -5,8 +5,20 @@ import connectDB from "./db/dbConnexion";
 import cookieParser from "cookie-parser";
 import sessions from "express-session";
 import cors from "cors";
+import helmet from "helmet";
 
 const app = express();
+
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        ...helmet.contentSecurityPolicy.getDefaultDirectives(),
+        "img-src": ["'self'", "images.unsplash.com"],
+      },
+    },
+  })
+);
 
 dotenv.config({ path: `.env.${process.env.NODE_ENV}` });
 
@@ -34,6 +46,9 @@ declare module "express-session" {
     userEmail: string | null;
   }
 }
+
+//Pour assainir les données envoyées
+app.use(require("sanitize").middleware);
 
 // Pour les cookies
 app.use(cookieParser());
