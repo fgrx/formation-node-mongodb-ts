@@ -13,7 +13,7 @@ const apiV1 = (): Router => {
 
   //Auto import
   const routerFiles = globSync(`./src/router/api/**/*.ts`, {
-    ignore: ["src/router/api/v1/index.ts", "**/*.spec.ts"],
+    ignore: ["src/router/api/v1/index.ts", "**/*.spec.ts", "**/__tests__/**"],
   });
 
   routerFiles.map(async (filename) => {

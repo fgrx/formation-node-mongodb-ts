@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { AlertMessage } from "../interfaces/AlertMessage";
 import { userRepository } from "../repository/userRepository";
-import { passwordEncoder } from "../services/passwordEncoder";
+import { verifyCredentials } from "../services/authentication";
 
 const authController = {
   showLogin: (req: Request, res: Response) => {
@@ -17,24 +17,20 @@ const authController = {
   async controlCredentials(req: Request, res: Response) {
     const { email, password } = req.body;
 
-    const userInDB = await userRepository.findUserByEmail(email);
+    const areCredentialsValid = await verifyCredentials(email, password);
 
-    if (userInDB) {
-      const encodedPassword = passwordEncoder(password, userInDB.salt);
+    if (areCredentialsValid) {
+      const session = req.session;
+      session.userEmail = email;
 
-      if (encodedPassword === userInDB.password) {
-        const session = req.session;
-        session.userEmail = email;
-
-        res.redirect("/admin");
-      } else {
-        const alertMessage: AlertMessage = {
-          title: "Problème d'authentification",
-          description: "Le couple Login / Mot de passe ne correspond pas",
-          type: "error",
-        };
-        res.render("login", { alertMessage });
-      }
+      res.redirect("/admin");
+    } else {
+      const alertMessage: AlertMessage = {
+        title: "Problème d'authentification",
+        description: "Le couple Login / Mot de passe ne correspond pas",
+        type: "error",
+      };
+      res.render("login", { alertMessage });
     }
   },
 };

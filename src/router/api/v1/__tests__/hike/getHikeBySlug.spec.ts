@@ -1,21 +1,9 @@
 import { describe, expect, it } from "vitest";
-import request from "supertest";
-import express from "express";
-import connectDB from "../../../../../db/dbConnexion";
-import dotenv from "dotenv";
-import getHikeBySlug from "../getHikeBySlug";
+import getHikeBySlug from "../../hike/getHikeBySlug";
+import { initAppForTesting } from "../initTests";
 
-//Configuration de l'environnement
-dotenv.config({ path: `.env.${process.env.NODE_ENV}` });
-connectDB();
-
-//Initialisation de l'application
-const app = express();
-const routes = getHikeBySlug("/api/v1");
-app.use(routes);
-
-//Chargement de l'application avec Supertest
-const runningApp = request(app);
+const route = getHikeBySlug("/api/v1");
+const runningApp = initAppForTesting(route);
 
 describe("GET api/v1/hikes", () => {
   it("Should test that true is true 😅", () => {

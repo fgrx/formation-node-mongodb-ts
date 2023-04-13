@@ -1,24 +1,11 @@
 import { describe, it, expect } from "vitest";
-import request from "supertest";
 import { Hike } from "../../../../../interfaces/Hike";
 import { hikeRepository } from "../../../../../repository/hikeRepository";
-import express from "express";
-import connectDB from "../../../../../db/dbConnexion";
-import dotenv from "dotenv";
-import addHike from "../addHike";
+import addHike from "../../hike/addHike";
+import { initAppForTesting } from "../initTests";
 
-//Configuration de l'environnement
-dotenv.config({ path: `.env.${process.env.NODE_ENV}` });
-connectDB();
-
-//Initialisation de l'application
-const app = express();
-app.use(express.json());
-const routes = addHike("/api/v1");
-app.use(routes);
-
-//Chargement de l'application avec Supertest
-const runningApp = request(app);
+const route = addHike("/api/v1");
+const runningApp = initAppForTesting(route);
 
 let createdHike: Hike;
 
