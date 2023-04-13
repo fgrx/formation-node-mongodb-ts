@@ -19,6 +19,14 @@ const tokenCreator = (datas: any): string => {
   return jwt.sign(datas, process.env.TOKEN_SALT || "defaultToken");
 };
 
+const isTokenValid = (token: string): any => {
+  try {
+    return jwt.decode(token);
+  } catch (error) {
+    return false;
+  }
+};
+
 const passwordEncoder = (password: string, key: string): string => {
   //HMAC : Hash-based message authentication code,
   // Permet de créer un hash avec une signature numérique
@@ -31,4 +39,4 @@ const passwordEncoder = (password: string, key: string): string => {
   return hash.digest("hex");
 };
 
-export { verifyCredentials, passwordEncoder, tokenCreator };
+export { verifyCredentials, passwordEncoder, tokenCreator, isTokenValid };
