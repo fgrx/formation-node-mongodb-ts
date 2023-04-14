@@ -24,8 +24,18 @@ describe(">>>>>> DeleteHike ", async () => {
 
   const token = tokenCreator({ email: "admin@gmail.com" });
 
-  it("should return a status code 403 when deleting", async () => {
+  it("should return a status code 403 when deleting without a token", async () => {
     const result = await runningApp.delete(`${baseUrl}/hikes/${fakeHike.slug}`);
+
+    expect(result.status).toBe(403);
+  });
+
+  it("should return a status code 403 when deleting with a false token", async () => {
+    const falseToken = "ABCD123456";
+
+    const result = await runningApp
+      .delete(`${baseUrl}/hikes/${fakeHike.slug}`)
+      .set("Authorization", `Bearer ${falseToken}`);
 
     expect(result.status).toBe(403);
   });

@@ -1,6 +1,6 @@
 import { userRepository } from "../repository/userRepository";
 import crypto from "crypto";
-import jwt from "jsonwebtoken";
+import jwt, { JwtPayload } from "jsonwebtoken";
 
 const verifyCredentials = async (
   email: string,
@@ -19,9 +19,13 @@ const tokenCreator = (datas: any): string => {
   return jwt.sign(datas, process.env.TOKEN_SALT || "defaultToken");
 };
 
-const isTokenValid = (token: string): any => {
+const isTokenValid = (token: string): string | JwtPayload | false => {
   try {
-    return jwt.decode(token);
+    const tokenDatas = jwt.verify(
+      token,
+      process.env.TOKEN_SALT || "defaultToken"
+    );
+    return tokenDatas;
   } catch (error) {
     return false;
   }
