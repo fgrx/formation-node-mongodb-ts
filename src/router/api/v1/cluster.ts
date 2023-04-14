@@ -1,8 +1,9 @@
 import { Router } from "express";
 
-const cluster = (baseUrl: string) => {
+const hasCluster = (baseUrl: string) => {
   const router = Router();
 
+  console.log(`Le worker ${process.pid} a démarré`);
   router.get(`${baseUrl}/cluster/fast-request`, (req, res) => {
     res.json("Really fast !");
   });
@@ -16,4 +17,4 @@ const cluster = (baseUrl: string) => {
   return router;
 };
 
-export default cluster;
+export default hasCluster;

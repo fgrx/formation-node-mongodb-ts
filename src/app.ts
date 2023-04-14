@@ -6,6 +6,8 @@ import cookieParser from "cookie-parser";
 import sessions from "express-session";
 import cors from "cors";
 import helmet from "helmet";
+import cluster from "node:cluster";
+import os from "node:os";
 
 const app = express();
 
@@ -67,10 +69,21 @@ connectDB();
 
 createRouter(app);
 
-if (process.env.NODE_ENV !== "test") {
-  app.listen(port, () => {
-    console.log(`Serveur lancé et à l'écoute sur le port ${port}`);
-  });
+if (cluster.isPrimary) {
+  console.log(`Le processus maitre ${process.pid} est en cours d'execution`);
+
+  const totalCPUs = os.cpus().length;
+
+  // On ne peut pas faire plus de cluster que le nombre max de CPU
+  for (let i = 0; i < totalCPUs; i++) {
+    cluster.fork();
+  }
+} else {
+  if (process.env.NODE_ENV !== "test") {
+    app.listen(port, () => {
+      console.log(`Serveur lancé et à l'écoute sur le port ${port}`);
+    });
+  }
 }
 
 export default app;

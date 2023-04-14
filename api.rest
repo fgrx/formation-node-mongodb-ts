@@ -43,6 +43,7 @@ Content-Type: application/json
     "description":"Randonnée de test avec une description d'au moins 20 chr !"
 }
 
+
 ###
 get http://localhost:3000/api/v1/cluster/fast-request
 
